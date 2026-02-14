@@ -1,0 +1,23 @@
+package com.app;
+
+import java.util.List;
+
+import com.app.parser.DiceEvaluator;
+import com.app.parser.DiceParser;
+import com.app.parser.Lexer;
+import com.app.parser.Token;
+import com.app.parser.nodes.Node;
+
+public class Main {
+    public static void main(String[] args) {
+        // Teste Simples
+        Dice dice = Dice.defaultDice();
+        DiceEvaluator evaluator = new DiceEvaluator(dice);
+        Lexer lexer = new Lexer("5d20kh3");
+        List<Token> tokens = lexer.tokenize();
+        DiceParser parser = new DiceParser(tokens);
+        Node ast = parser.parse();
+        int result = evaluator.evaluate(ast);
+        System.out.println(result);
+    }
+}
