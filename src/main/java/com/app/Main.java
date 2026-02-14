@@ -13,7 +13,7 @@ public class Main {
         // Teste Simples
         Dice dice = Dice.defaultDice();
         DiceEvaluator evaluator = new DiceEvaluator(dice);
-        Lexer lexer = new Lexer("5d20kh3");
+        Lexer lexer = new Lexer("d%");
         List<Token> tokens = lexer.tokenize();
         DiceParser parser = new DiceParser(tokens);
         Node ast = parser.parse();
