@@ -20,7 +20,6 @@ Um parser recursivo para expressões de dados estilo RPG, com suporte a modifica
 - Também suporta expressões matemáticas com precedência e parênteses
 
 # Arquitetura Geral
-O parser segue a arquitetura clássica de interpretadores:
 
 ```text
                 ┌────────────────────┐
@@ -64,9 +63,7 @@ O parser segue a arquitetura clássica de interpretadores:
 
 <term>       ::= <factor> { ("*" | "/") <factor> }
 
-<factor>     ::= NUMBER
-               | <dice>
-               | "(" <expression> ")"
+<factor>     ::= NUMBER | <dice> | "(" <expression> ")"
 
 <dice>       ::= [<quantity>] "d" <sides> { <modifier> }
 
@@ -74,27 +71,15 @@ O parser segue a arquitetura clássica de interpretadores:
 
 <sides>      ::= NUMBER | "%"
 
-<modifier>   ::= <keep>
-               | <explosion>
+<modifier>   ::= <keep> | <explosion>
 
-<keep>       ::= "kh" NUMBER
-               | "kl" NUMBER
+<keep>       ::= "kh" NUMBER | "kl" NUMBER
 
-<explosion>  ::= "!"
-               | "!!"
-               | "!!" NUMBER
-               | "!p"
-               | "!p" NUMBER
-               | "!" <condition>
+<explosion>  ::= "!" | "!!" | "!!" NUMBER | "!p" | "!p" NUMBER | "!" <condition>
 
 <condition>  ::= <relop> NUMBER
 
-<relop>      ::= ">"
-               | ">="
-               | "<"
-               | "<="
-               | "="
-               | "!="
+<relop>      ::= ">" | ">=" | "<" | "<=" | "=" | "!="
 ```
 
 # Ordem de execução do motor
