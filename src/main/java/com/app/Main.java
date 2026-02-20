@@ -11,8 +11,8 @@ import com.app.parser.nodes.Node;
 public class Main {
     public static void main(String[] args) {
         // Teste Simples
-        Dice dice = Dice.defaultDice();
-        DiceEvaluator evaluator = new DiceEvaluator(dice);
+        Roll roll = Roll.defaultRNG();
+        DiceEvaluator evaluator = new DiceEvaluator(roll);
         Lexer lexer = new Lexer("d%");
         List<Token> tokens = lexer.tokenize();
         DiceParser parser = new DiceParser(tokens);

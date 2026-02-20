@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import com.app.Dice;
+import com.app.Roll;
 import com.app.parser.modifiers.DiceModifier;
 import com.app.parser.modifiers.ExplosionModifier;
 import com.app.parser.modifiers.KeepHighestModifier;
@@ -20,10 +20,10 @@ import com.app.parser.nodes.NumberNode;
  */
 public class DiceEvaluator {
 
-    private final Dice dice;
+    private final Roll roll;
 
-    public DiceEvaluator(Dice dice) {
-        this.dice = dice;
+    public DiceEvaluator(Roll roll) {
+        this.roll = roll;
     }
 
     public int evaluate(Node node) {
@@ -66,7 +66,7 @@ public class DiceEvaluator {
     private int handleExplosion(int sides, List<DiceModifier> modifiers) {
 
         int total = 0;
-        int roll = dice.roll(sides);
+        int roll = this.roll.dM(sides);
         total += roll;
 
         for (DiceModifier mod : modifiers) {
@@ -81,7 +81,7 @@ public class DiceEvaluator {
                         break;
                     }
 
-                    roll = dice.roll(sides);
+                    roll = this.roll.dM(sides);
 
                     if (exp.penetrating() && exp.penalty() != null) {
                         roll -= exp.penalty();
