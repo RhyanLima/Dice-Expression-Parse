@@ -1,4 +1,4 @@
-package com.app;
+package com.app.roll;
 
 import java.util.random.RandomGenerator;
 import java.util.random.RandomGeneratorFactory;
@@ -6,19 +6,19 @@ import java.util.random.RandomGeneratorFactory;
 /**
  * Value Object responsável pela mecânica de rolagem de dados.
  */
-public final class Roll {
+public final class DiceRoll {
 
     private final RandomGenerator rng;
     
     /** Construtor permite injetar RNG (permite seed determinística). */
-    public Roll(RandomGenerator rng) {
+    public DiceRoll(RandomGenerator rng) {
         this.rng = rng;
     }
 
     
     /** Factory padrão usando L64X128MixRandom. */
-    public static Roll defaultRNG() {
-        return new Roll(
+    public static DiceRoll defaultRNG() {
+        return new DiceRoll(
             RandomGeneratorFactory.of("L64X128MixRandom").create()
         );
     }
